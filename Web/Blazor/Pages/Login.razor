@@ -1,0 +1,56 @@
+﻿@page "/Login"
+@page "/Login/{MensajeError}"
+@attribute [AllowAnonymous]
+
+@inherits LayoutComponentBase
+
+
+@if (MensajeError != null)
+{
+    <div class="text-danger">@MensajeError</div>
+}
+
+<form method="post" action="/autenticar">
+
+    <center>
+     <div>
+    <h3 style="font-weight:bold; color:purple">Ingrese Los Datos Requeridos</h3>
+	</div>
+    </center>
+    <center>
+
+			<div class="col-12 row">
+                <center>
+				<div class="col-6" style="border-right">
+					<img src="/Img/logo.pnj.png" width="500px" height="250px" />
+				</div>
+            </center>
+				<div class="col-6" style="border-left:thick">
+					@Body
+				</div>
+			</div>
+			<div class="col-12 row">
+				<p>&nbsp;</p>
+			</div>
+		
+	</center>
+    <br />
+    <div class="col-12 row">
+        <input class="form-control col-12" name="CodigoUsuario" placeholder="Usuario" />
+    </div>
+    <br />
+    <div class="col-12 row">
+        <input type="password" class="form-control col-12" name="Contrasena" placeholder="Contraseña" />
+    </div>
+    <br />
+    <div class="col-12 row">
+        <span class="col-12"></span>
+        <button class="btn btn-primary">Entrar</button>
+    </div>
+    <br />
+
+</form>
+
+@code {
+    [Parameter] public string MensajeError { get; set; }
+}
