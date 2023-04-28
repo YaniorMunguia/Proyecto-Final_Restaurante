@@ -1,19 +1,31 @@
 ﻿@inherits LayoutComponentBase
 
-<PageTitle>Super Burgers</PageTitle>
+<PageTitle><img src="/Img/logo.png" width="50px" height="50px" />Super Burgers</PageTitle>
 
-<div class="page">
+<div class="page @GetCssClass()">
     <div class="sidebar">
         <NavMenu />
     </div>
 
     <main>
         <div class="top-row px-4">
+
+            <a style="font-variant:lighter; color:red">Tema</a>
+            
+				<select @onchange="ChangingTheme" style="margin-right: 1rem">
+					@foreach (var theme in themes)
+					{
+						<option selected="@IsSelectedTheme(theme)" value="@theme">@theme</option>
+					}
+				</select>
+           
+            
+
             <AuthorizeView>
                 <Authorized>
                     <span class="ml-md-auto">
-                        Usuario: @context.User.Claims.First().Value
-                        <a href="/Salir">Salir</a>
+                        <a style="font-size:18px; font-weight:200; color:mediumturquoise" class="oi oi-person"> Usuario: @context.User.Claims.First().Value</a>
+                        <a class="oi oi-circle-x" href="/Salir">Salir</a>
                     </span>
                 </Authorized>
                 <NotAuthorized>
@@ -28,3 +40,28 @@
         </article>
     </main>
 </div>
+
+@code{
+    private string selectedTheme= "Clasico";
+    private List<string> themes = new List<string> { "Clasico","Oscuro" };
+
+    private string GetCssClass()
+    {
+        if(selectedTheme == "Clasico")
+        {
+            return string.Empty;
+        }
+        else
+        {
+            return "dark-mode";
+        }
+    }
+    private bool IsSelectedTheme(string theme)
+    {
+        return theme == selectedTheme;
+    }
+    private void ChangingTheme(ChangeEventArgs e)
+    {
+        selectedTheme = e.Value.ToString();
+    }
+}

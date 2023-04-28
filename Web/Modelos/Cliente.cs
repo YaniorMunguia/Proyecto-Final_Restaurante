@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,9 @@ namespace Modelos
 {
     public class Cliente
     {
+        [Required(ErrorMessage = "Identidad es requerida")]
         public string Identidad { get; set; }
+        [Required(ErrorMessage = "El nombre es requerido")]
         public string Nombre { get; set; }
         public string Telefono { get; set; }
         public string Correo { get; set; }

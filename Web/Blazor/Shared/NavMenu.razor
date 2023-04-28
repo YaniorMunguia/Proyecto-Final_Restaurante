@@ -1,6 +1,6 @@
 ﻿<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">Super Burgers</a>
+        <a class="navbar-brand" href=""><img src="/Img/logo.png" width="50px" height="50px" />Super Burgers</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,6 +26,16 @@
             </Authorized>
         </AuthorizeView>
         
+        <AuthorizeView Roles="Administrador, Usuario">
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="Clientes">
+                        <span class="oi oi-aperture" aria-hidden="true"></span> Clientes
+                    </NavLink>
+                </div>
+            </Authorized>
+        </AuthorizeView>
+
     </nav>
 </div>
 
