@@ -16,14 +16,13 @@ namespace Modelos
         public string Telefono { get; set; }
         public string Correo { get; set; }
         public string Direccion { get; set; }
-        public DateTime FechaNacimiento { get; set; }
+        public string FechaNacimiento { get; set; }
         public bool EstaActivo { get; set; }
 
         public Cliente()
         {
         }
-
-        public Cliente(string identidad, string nombre, string telefono, string correo, string direccion, DateTime fechaNacimiento, bool estaActivo)
+        public Cliente(string identidad, string nombre, string telefono, string correo, string direccion, string fechaNacimiento, bool estaActivo)
         {
             Identidad = identidad;
             Nombre = nombre;
@@ -33,5 +32,7 @@ namespace Modelos
             FechaNacimiento = fechaNacimiento;
             EstaActivo = estaActivo;
         }
+
+        
     }
 }

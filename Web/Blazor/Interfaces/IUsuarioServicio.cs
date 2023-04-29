@@ -9,5 +9,6 @@ namespace Blazor.Interfaces
         Task<bool> EliminarAsync(string codigoUsuario);
         Task<IEnumerable<Usuario>> GetListaAsync();
         Task<Usuario> GetPorCodigoAsync(string codigoUsuario);
+        
     }
 }

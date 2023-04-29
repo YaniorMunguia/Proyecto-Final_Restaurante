@@ -2,3 +2,77 @@
 @page "/Clientes"
 
 
+<AuthorizeView Roles="Administrador,Usuario">
+    <Authorized Context="AuthenticationState">
+        <center>
+            <div>
+                <h2 style="font-variant:lighter; color:dodgerblue">...Lista de Clientes Registrados...</h2>
+            </div>
+        </center>
+
+        @if (liste == null)
+        {
+            <p>No se encontraron Clientes registrados...</p>
+        }
+        else
+        {
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Identidad</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Fecha De Nacimiento</th>
+                        <th scope="col">Esta Activo</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    @foreach (Cliente cliente in liste)
+                    {
+                        <tr>
+                            <td>@cliente.Identidad</td>
+                            <td>@cliente.Nombre</td>
+                            <td>@cliente.Telefono</td>
+                            <td>@cliente.Correo</td>
+                            <td>@cliente.Direccion</td>
+                             <td>@cliente.FechaNacimiento</td>
+                            @if (cliente.EstaActivo)
+                            {
+                                <td>
+                                    <span class="oi oi-check" style="color:green;"></span>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <span class="oi 0i oi-x" style="color:red;"></span>
+                                </td>
+                            }
+                            <th>
+                                <a class="btn btn-outline-success" href="@($"/Clientes/Editar/{cliente.Identidad}")">Editar</a>
+                            </th>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+            <div>
+                <br /><br /><br />
+            </div>
+
+            <div class="col-12 row">
+                <span class="col-12"></span>
+                <a href="/Clientes/Nuevo" class="form-control col-6 btn btn-primary" style="color:black">Nuevo</a>
+            </div>
+        }
+    </Authorized>
+    <NotAuthorized>
+        <h3>Debe ser Administrador Para visualizar</h3>
+    </NotAuthorized>
+</AuthorizeView>
+
+  

@@ -21,6 +21,11 @@ namespace Blazor.Servicios
             return await _usuarioRepositorio.ActualizarAsync(user);
         }
 
+        public Task<bool> ActualizarAsync(Cliente cliente)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> EliminarAsync(string codigoUsuario)
         {
             return await _usuarioRepositorio.EliminarAsync(codigoUsuario);
