@@ -1,0 +1,65 @@
+﻿@page "/Bebidas"
+@using Modelos
+
+<AuthorizeView Roles="Administrador, Usuario">
+    <Authorized Context="AuthenticationState">
+
+        <h2>Lista de Bebidas</h2>
+
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <a href="/Bebidas/Nuevo" class="btn btn-primary m-1">Agregar un nueva bebida</a>
+            </div>
+        </div>
+
+        @if (lista == null)
+        {
+            <p>No existen productos en el sistema</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Tipo Bebida</th>
+                        <th>Existencia</th>
+                        <th>Precio</th>   
+                        <th>Esta Activo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Bebida bebida in lista)
+                    {
+                        <tr>
+                            <th>@bebida.Codigo</th>
+                            <th>@bebida.Descripcion</th>
+                            <th>@bebida.Existencia</th>
+                            <th>@bebida.Precio</th>
+                            
+                            @if (bebida.EstaActivo)
+                            {
+                                <td>
+                                    <span class="oi oi-circle-check" style="color:green;"></span>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <span class="oi oi-circle-x" style="color:red;"></span>
+                                </td>
+                            }
+                            <th>
+                                <a class="btn btn-success" href="@($"/Bebidas/Editar/{bebida.Codigo}")">Editar</a>
+                            </th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </Authorized>
+    <NotAuthorized>
+        <h3>No tiene permisos para acceder a esta ruta</h3>
+    </NotAuthorized>
+</AuthorizeView>
+

@@ -1,4 +1,4 @@
-﻿/*using Dapper;
+﻿using Dapper;
 using Datos.Interfaces;
 using Modelos;
 using MySql.Data.MySqlClient;
@@ -30,7 +30,7 @@ namespace Datos.Repositorios
             {
                 using MySqlConnection _conexion = Conexion();
                 await _conexion.OpenAsync();
-                string sql = @"UPDATE bebida SET NombreBebida = @NombreBebida, Existencia = @Existencia,
+                string sql = @"UPDATE bebida SET Descripcion = @Descripcion, Existencia = @Existencia,
                                Precio = @Precio, EstaActivo = @EstaActivo WHERE Codigo = @Codigo;";
                 resultado = Convert.ToBoolean(await _conexion.ExecuteAsync(sql, bebida));
             }
@@ -95,8 +95,8 @@ namespace Datos.Repositorios
             {
                 using MySqlConnection _conexion = Conexion();
                 await _conexion.OpenAsync();
-                string sql = @"INSERT INTO bebida (Codigo,NombreBebida,Existencia,Precio,EstaActivo) 
-                                VALUES (@Codigo,@NombreBebida,@Existencia,@Precio,@EstaActivo);";
+                string sql = @"INSERT INTO bebida (Codigo,Descripcion,Existencia,Precio,EstaActivo) 
+                                VALUES (@Codigo,@Descripcion,@Existencia,@Precio,@EstaActivo);";
                 resultado = Convert.ToBoolean(await _conexion.ExecuteAsync(sql, bebida));
             }
             catch (Exception)
@@ -106,4 +106,3 @@ namespace Datos.Repositorios
         }
     }
 }
-*/

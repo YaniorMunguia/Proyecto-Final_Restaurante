@@ -1,14 +1,15 @@
 ﻿using Modelos;
 
-
-namespace Datos.Interfaces
+namespace Blazor.Interfaces
 {
-    public interface IBebidaRepositorio
+    public interface IBebidaServicio
     {
         Task<bool> Nuevo(Bebida bebida);
         Task<bool> Actualizar(Bebida bebida);
         Task<bool> Eliminar(string codigo);
         Task<IEnumerable<Bebida>> GetLista();
         Task<Bebida> GetPorCodigo(string codigo);
+        
     }
 }
+
