@@ -1,6 +1,6 @@
 ﻿@page "/Productos/Editar/{Codigo}"
 
-<AuthorizeView Roles="Administrador">
+<AuthorizeView Roles="Administrador, Usuario">
     <Authorized Context="AuthenticationState">
         <h3>Editar Producto</h3>
         <br />
