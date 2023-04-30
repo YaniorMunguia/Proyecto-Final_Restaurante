@@ -1,8 +1,35 @@
 ﻿@page "/Productos"
 @using Modelos
 
-<AuthorizeView Roles="Administrador">
+<AuthorizeView Roles="Administrador, Usuario">
     <Authorized Context="AuthenticationState"> 
+        <table>
+            <thead>
+                <tr>
+                    <th><h1>Productos Super Burger</h1></th>
+                    <th><img src="/Img/logo.png" width="50px" height="0px" /></th>
+                    <th><img src="/Img/logo.png" width="100px" height="100px" /></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><h3>Restaurante:</h3></td>
+                    <th>Super Burguer</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><h3>Ubicacion:</h3></td>
+                    <td>Tegucigalpa</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><h3>Gmail:</h3></td>
+                    <td>SuperBurguer@gmail.com</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
         <h2>Lista de Productos</h2>
 
         <div class="form-group row">
