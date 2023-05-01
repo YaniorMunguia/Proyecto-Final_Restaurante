@@ -1,0 +1,86 @@
+﻿@page "/Clientes/Nuevo"
+
+<AuthorizeView Roles="Administrador, Usuario">
+    <Authorized Context="AuthenticationState">
+        <h3>Nuevo Cliente</h3>
+        <br />
+
+        <EditForm Model="@cliente">
+            <DataAnnotationsValidator />
+
+            <div class="form-group row">
+                <label for="CodigoUsuario" class="col-sm-2 col-form-label">
+                    ID
+                </label>
+                <div class="col-sm-10">
+                    <InputText id="Identidad" class="form-control" @bind-Value="cliente.Identidad" />
+                    <ValidationMessage For="@(() => cliente.Identidad)" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Nombre" class="col-sm-2 col-form-label">
+                    Nombre
+                </label>
+                <div class="col-sm-10">
+                    <InputText id="Nombre" class="form-control" @bind-Value="cliente.Nombre" />
+                    <ValidationMessage For="@(() =>cliente.Nombre)" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Telefono" class="col-sm-2 col-form-label">
+                    Telefono
+                </label>
+                <div class="col-sm-10">
+                    <InputText id="Correo" class="form-control" @bind-Value="cliente.Telefono" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Correo" class="col-sm-2 col-form-label">
+                    Correo
+                </label>
+                <div class="col-sm-10">
+                    <InputText id="Correo" class="form-control" @bind-Value="cliente.Correo" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Direccion" class="col-sm-2 col-form-label">
+                    Direccion
+                </label>
+                <div class="col-sm-10">
+                    <InputText id="Correo" class="form-control" @bind-Value="cliente.Direccion" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="FechaNacimiento" class="col-sm-2 col-form-label">
+                    Fecha De nacimiento
+                </label>
+                <div class="col-sm-10">
+                    <InputText id="FechaNacimiento" class="form-control" @bind-Value="cliente.FechaNacimiento" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="EstaActivo" class="col-sm-2 col-form-label">
+                    Esta Activo
+                </label>
+                <div class="col-sm-10">
+                    <InputCheckbox @bind-Value="cliente.EstaActivo" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <p>
+                    <input type="submit" class="btn btn-primary" value="Guardar" @onclick="Guardar" />
+                    <input type="submit" class="btn btn-danger" value="Cancelar" @onclick="Cancelar" />
+                </p>
+            </div>
+        </EditForm>
+    </Authorized>
+    <NotAuthorized>
+        <h3>No tiene permisos para acceder a esta ruta</h3>
+    </NotAuthorized>
+</AuthorizeView>

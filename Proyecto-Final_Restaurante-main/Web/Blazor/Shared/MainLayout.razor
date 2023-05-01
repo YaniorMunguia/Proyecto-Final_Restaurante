@@ -1,0 +1,68 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle><img src="/Img/logo.png" width="50px" height="50px" />Super Burgers</PageTitle>
+
+
+<div class="page @GetCssClass()">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+
+            <a style="font-variant:lighter; color:red">Tema</a>
+            
+				<select @onchange="ChangingTheme" style="margin-right: 1rem">
+					@foreach (var theme in themes)
+					{
+						<option selected="@IsSelectedTheme(theme)" value="@theme">@theme</option>
+					}
+				</select>
+           
+            
+
+            <AuthorizeView>
+                <Authorized>
+                    <span class="ml-md-auto">
+                        <a style="font-size:18px; font-weight:200; color:mediumturquoise" class="oi oi-person"> Usuario: @context.User.Claims.First().Value</a>
+                        <a class="oi oi-circle-x" href="/Salir">Salir</a>
+                    </span>
+                </Authorized>
+                <NotAuthorized>
+                    <a href="Login" style="font-size:24px; font-weight:700; color:orangered" class="oi oi-person ">Iniciar Sesión</a>
+                </NotAuthorized>
+
+            </AuthorizeView>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code{
+    private string selectedTheme= "Clasico";
+    private List<string> themes = new List<string> { "Clasico","Oscuro" };
+
+    private string GetCssClass()
+    {
+        if(selectedTheme == "Clasico")
+        {
+            return string.Empty;
+        }
+        else
+        {
+            return "dark-mode";
+        }
+    }
+    private bool IsSelectedTheme(string theme)
+    {
+        return theme == selectedTheme;
+    }
+    private void ChangingTheme(ChangeEventArgs e)
+    {
+        selectedTheme = e.Value.ToString();
+    }
+}
