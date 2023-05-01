@@ -11,6 +11,7 @@ namespace Blazor.Pages.Facturacion
 		[Inject] private IFacturaServicio facturaServicio { get; set; }
 		[Inject] private IDetalleFacturaServicio detalleFacturaServicio { get; set; }
 		[Inject] private IProductoServicio productoServicio { get; set; }
+		[Inject] private IBebidaServicio bebidaServicio { get; set; }
 		[Inject] private SweetAlertService Swal { get; set; }
 		[Inject] NavigationManager _navigationManager { get; set; }
 		[Inject] private IHttpContextAccessor httpContextAccessor { get; set; }
@@ -18,9 +19,12 @@ namespace Blazor.Pages.Facturacion
 		public Factura factura = new Factura();
 		private List<DetalleFactura> listaDetalleFactura = new List<DetalleFactura>();
 		private Producto producto = new Producto();
+
+		private Bebida bebida = new Bebida();
 		private int cantidad { get; set; }
 		private string codigoProducto { get; set; }
 
+		private string codigoBebida { get; set; }
 		protected override async Task OnInitializedAsync()
 		{
 			factura.Fecha = DateTime.Now;
@@ -37,7 +41,7 @@ namespace Blazor.Pages.Facturacion
 				{
 					DetalleFactura detalle = new DetalleFactura();
 					detalle.Descripcion = producto.Descripcion;
-					detalle.CodigoProducto = producto.Codigo;
+					detalle.CodigoProducto_Bebida = producto.Codigo;
 					detalle.Cantidad = Convert.ToInt32(cantidad);
 					detalle.Precio = producto.Precio;
 					detalle.Total = producto.Precio * Convert.ToInt32(cantidad);
@@ -47,6 +51,36 @@ namespace Blazor.Pages.Facturacion
 					producto.Existencia = 0;
 					cantidad = 0;
 					codigoProducto = "0";
+
+					factura.SubTotal = factura.SubTotal + detalle.Total;
+					factura.ISV = factura.SubTotal * 0.15M;
+					factura.Total = factura.SubTotal + factura.ISV - factura.Descuento;
+				}
+			}
+		}
+
+		private async void BuscarBebida()
+		{
+			bebida = await bebidaServicio.GetPorCodigo(codigoBebida);
+		}
+		protected async Task AgregarBebida(MouseEventArgs args)
+		{
+			if (args.Detail != 0)
+			{
+				if (bebida != null)
+				{
+					DetalleFactura detalle = new DetalleFactura();
+					detalle.Descripcion = bebida.Descripcion;
+					detalle.CodigoProducto_Bebida = bebida.Codigo;
+					detalle.Cantidad = Convert.ToInt32(cantidad);
+					detalle.Precio = bebida.Precio;
+					detalle.Total = bebida.Precio * Convert.ToInt32(cantidad);
+					listaDetalleFactura.Add(detalle);
+					bebida.Descripcion = string.Empty;
+					bebida.Precio = 0;
+					bebida.Existencia = 0;
+					cantidad = 0;
+					codigoBebida = "0";
 
 					factura.SubTotal = factura.SubTotal + detalle.Total;
 					factura.ISV = factura.SubTotal * 0.15M;
@@ -77,3 +111,4 @@ namespace Blazor.Pages.Facturacion
 	}
 
 }
+

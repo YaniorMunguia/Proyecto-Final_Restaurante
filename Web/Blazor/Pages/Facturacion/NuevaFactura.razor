@@ -21,7 +21,7 @@
 			<div class="rz-card card" style="width:100%">
 				<div class="form-group row">
 					<div class="col-sm-2">
-						<b>Código Producto:</b>
+						<b>Código Alimento:</b>
 						<InputText id="Codigo" class="form-control" @bind-value="codigoProducto" ValueExpression="@( () => @codigoProducto)" />
 					</div>
 
@@ -45,7 +45,37 @@
 					</div>
 				</div>
 			</div>
-			 <br />
+			<br />
+
+			<br />
+			<div class="rz-card card" style="width:100%">
+				<div class="form-group row">
+					<div class="col-sm-2">
+						<b>Código Bebida:</b>
+						<InputText id="Codigo" class="form-control" @bind-value="codigoBebida" ValueExpression="@( () => @codigoBebida)" />
+					</div>
+
+					<div class="col-sm-1">
+						<b>Buscar</b>
+						<input type="submit" class="btn btn-primary" value="Buscar" @onclick="@BuscarBebida" />
+					</div>
+
+					<div class="col-sm-6">
+						<b>Descripción:</b>
+						<InputText readonly id="Descripcion" class="form-control" @bind-Value="@bebida.Descripcion" />
+					</div>
+
+					<div class="col-sm-2">
+						<b>Cantidad:</b>
+						<InputNumber id="Cantidad" class="form-control" @bind-Value="@cantidad" />
+					</div>
+
+					<div class="col-sm-1">
+						<input type="submit" class="btn btn-primary" value="Agregar" @onclick="@AgregarBebida" />
+					</div>
+				</div>
+			</div>
+			<br />
 
 			<table class="table">
 				<thead>
@@ -61,42 +91,43 @@
 					@foreach (var det in listaDetalleFactura)
 					{
 						<tr>
-							<td>@det.CodigoProducto</td>
+							<td>@det.CodigoProducto_Bebida</td>
+
 							<td>@det.Descripcion</td>
 							<td>@det.Cantidad</td>
 							<td>@det.Precio</td>
 							<td>@det.Total</td>
 						</tr>
-					}					
+					}
 				</tbody>
 			</table>
 			<br />
-			<div align="right"> 
+			<div align="right">
 				<div class="form-group row">
 					<label for="SubTotal" class="col-sm-10 col-form-label">SubTotal</label>
 					<div class="col-md-2">
-						<InputNumber readonly id="SubTotal" TValue="Decimal" class="form-control" @bind-value="factura.SubTotal" ValueExpression="@( () => factura.SubTotal )"/>
+						<InputNumber readonly id="SubTotal" TValue="Decimal" class="form-control" @bind-value="factura.SubTotal" ValueExpression="@( () => factura.SubTotal )" />
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="Descuento" class="col-sm-10 col-form-label">Descuento</label>
 					<div class="col-md-2">
-						<InputNumber id="Descuento" TValue="Decimal" class="form-control" @bind-value="factura.Descuento" ValueExpression="@( () => factura.Descuento )"/>
+						<InputNumber id="Descuento" TValue="Decimal" class="form-control" @bind-value="factura.Descuento" ValueExpression="@( () => factura.Descuento )" />
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="ISV" class="col-sm-10 col-form-label">Impuesto</label>
 					<div class="col-md-2">
-						<InputNumber readonly id="ISV" TValue="Decimal" class="form-control" @bind-value="factura.ISV" ValueExpression="@( () => factura.ISV )"/>
+						<InputNumber readonly id="ISV" TValue="Decimal" class="form-control" @bind-value="factura.ISV" ValueExpression="@( () => factura.ISV )" />
 					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="Total" class="col-sm-10 col-form-label">Total</label>
 					<div class="col-md-2">
-						<InputNumber readonly id="Total" TValue="Decimal" class="form-control" @bind-value="factura.Total" ValueExpression="@( () => factura.Total )"/>
+						<InputNumber readonly id="Total" TValue="Decimal" class="form-control" @bind-value="factura.Total" ValueExpression="@( () => factura.Total )" />
 					</div>
 				</div>
 			</div>

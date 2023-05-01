@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
         public int IdFactura { get; set; }
-        public string CodigoProducto { get; set; }
+        public string CodigoProducto_Bebida { get; set; }
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
         public int Cantidad { get; set; }
@@ -14,11 +14,11 @@
         {
         }
 
-        public DetalleFactura(int id, int idFactura, string codigoProducto, string descripcion, decimal precio, int cantidad, decimal total)
+        public DetalleFactura(int id, int idFactura, string codigoProducto_Bebida, string descripcion, decimal precio, int cantidad, decimal total)
         {
             Id=id;
             IdFactura=idFactura;
-            CodigoProducto=codigoProducto;
+            CodigoProducto_Bebida=codigoProducto_Bebida;
             Descripcion=descripcion;
             Precio=precio;
             Cantidad=cantidad;
