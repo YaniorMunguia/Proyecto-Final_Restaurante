@@ -20,5 +20,9 @@ namespace Blazor.Servicios
         {
             return await facturaRepositorio.Nueva(factura);
         }
+        public async Task<IEnumerable<Factura>> GetLista()
+        {
+            return await facturaRepositorio.GetLista();
+        }
     }
 }
