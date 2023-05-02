@@ -4,7 +4,7 @@ using Modelos;
 
 namespace Blazor.Pages.Facturacion
 {
-    public partial class Facturas
+    public partial class Listado
     {
         [Inject] private IFacturaServicio facturaServicio { get; set; }
 

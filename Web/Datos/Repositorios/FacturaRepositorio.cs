@@ -46,7 +46,7 @@ namespace Datos.Repositorios
                                VALUES (@Fecha, @IdentidadCliente, @CodigoUsuario, @ISV, @Descuento, @SubTotal, @Total); SELECT LAST_INSERT_ID()";
                 idFactura = Convert.ToInt32(await conexion.ExecuteScalarAsync(sql, factura));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
             return idFactura;

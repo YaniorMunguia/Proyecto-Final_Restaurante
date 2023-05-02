@@ -1,12 +1,13 @@
-﻿@page "/Facturas"
+﻿@page "/Listado"
 
 @using Modelos
+
 
 <AuthorizeView Roles="Administrador,Usuario">
     <Authorized Context="AuthenticationState">
         <center>
             <div>
-                <h2 style="font-variant:lighter; color:dodgerblue">...Facturas ...</h2>
+                <h2 style="font-variant:lighter; color:dodgerblue">Facturas realizadas</h2>
             </div>
         </center>
 
@@ -20,9 +21,9 @@
 
                 <thead>
                     <tr>
-                        <th scope="col">Numero</th>
+                        <th scope="col">Orden #</th>
+                        <th scope="col">Fecha</th>
                         <th scope="col">ID-Cliente</th>
-                        <th scope="col">Codigo Usuario</th>
                         <th scope="col">ISV</th>
                         <th scope="col">Descuento</th>
                         <th scope="col">Sub-Total</th>
@@ -34,13 +35,13 @@
                     {
                         <tr>
                             <td>@factura.Id</td>
+                            <td>@factura.Fecha</td>
                             <td>@factura.IdentidadCliente</td>
-                            <td>@factura.CodigoUsuario</td>
                             <td>@factura.ISV</td>
                             <td>@factura.Descuento</td>
-                             <td>@factura.SubTotal</td>
-                             <td>@factura.Total</td>
-                       
+                            <td>@factura.SubTotal</td>
+                            <td>@factura.Total</td>
+           
                         </tr>
                     }
                 </tbody>
@@ -53,7 +54,7 @@
 
             <div class="col-12 row">
                 <span class="col-12"></span>
-                <a href="/Clientes/Nuevo" class="form-control col-6 btn btn-primary" style="color:black">Nuevo</a>
+                <a href="/Factura/Nuevo" class="form-control col-6 btn btn-primary" style="color:black">Nuevo</a>
             </div>
         }
     </Authorized>
@@ -62,4 +63,3 @@
     </NotAuthorized>
 </AuthorizeView>
 
-  
