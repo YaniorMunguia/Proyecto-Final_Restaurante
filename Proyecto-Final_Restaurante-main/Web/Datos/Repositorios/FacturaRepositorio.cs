@@ -35,5 +35,20 @@ namespace Datos.Repositorios
             }
             return idFactura;
         }
+        public async Task<IEnumerable<Factura>> GetLista()
+        {
+            IEnumerable<Factura> lista = new List<Factura>();
+            try
+            {
+                using MySqlConnection _conexion = Conexion();
+                await _conexion.OpenAsync();
+                string sql = @"SELECT * FROM factura;";
+                lista = await _conexion.QueryAsync<Factura>(sql);
+            }
+            catch (Exception)
+            {
+            }
+            return lista;
+        }
     }
 }
