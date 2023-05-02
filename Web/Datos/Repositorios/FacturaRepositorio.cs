@@ -19,7 +19,23 @@ namespace Datos.Repositorios
             return new MySqlConnection(CadenaConexion);
         }
 
-        public async Task<int> Nueva(Factura factura)
+		public async Task<IEnumerable<Factura>> GetLista()
+		{
+			IEnumerable<Factura> lista = new List<Factura>();
+			try
+			{
+				using MySqlConnection _conexion = Conexion();
+				await _conexion.OpenAsync();
+				string sql = @"SELECT * FROM factura;";
+				lista = await _conexion.QueryAsync<Factura>(sql);
+			}
+			catch (Exception)
+			{
+			}
+			return lista;
+		}
+
+		public async Task<int> Nueva(Factura factura)
         {
             int idFactura = 0;
             try

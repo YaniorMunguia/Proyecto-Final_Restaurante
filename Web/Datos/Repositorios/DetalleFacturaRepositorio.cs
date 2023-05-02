@@ -19,7 +19,7 @@ namespace Datos.Repositorios
             return new MySqlConnection(CadenaConexon);
         }
 
-        public async Task<bool> Nuevo(DetalleFactura detalleFactura)
+		public async Task<bool> Nuevo(DetalleFactura detalleFactura)
         {
             bool inserto = false;
             try
