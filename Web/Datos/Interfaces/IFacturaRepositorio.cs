@@ -6,5 +6,6 @@ namespace Datos.Interfaces
     {
         Task<int> Nueva(Factura factura);
 		Task<IEnumerable<Factura>> GetLista();
-	}
+        Task<bool> Eliminar(string id);
+    }
 }

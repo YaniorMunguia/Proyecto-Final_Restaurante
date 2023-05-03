@@ -16,6 +16,11 @@ namespace Blazor.Servicios
             facturaRepositorio = new FacturaRepositorio(config.CadenaConexion);
         }
 
+        public async Task<bool> Eliminar(string id)
+        {
+            return await facturaRepositorio.Eliminar(id);
+        }
+
         public async Task<IEnumerable<Factura>> GetLista()
         {
             return await facturaRepositorio.GetLista();

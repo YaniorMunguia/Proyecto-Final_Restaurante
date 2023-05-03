@@ -41,6 +41,11 @@
                             <td>@factura.Descuento</td>
                             <td>@factura.SubTotal</td>
                             <td>@factura.Total</td>
+
+                            <th>
+          
+                                <input type="submit" class="btn btn-danger" value="Eliminar" @onclick="Eliminar" />
+                            </th>
            
                         </tr>
                     }
@@ -54,7 +59,7 @@
 
             <div class="col-12 row">
                 <span class="col-12"></span>
-                <a href="/Factura/Nuevo" class="form-control col-6 btn btn-primary" style="color:black">Nuevo</a>
+                <a href="/Factura/NuevaFactura" class="form-control col-6 btn btn-primary" style="color:black">Nuevo</a>
             </div>
         }
     </Authorized>

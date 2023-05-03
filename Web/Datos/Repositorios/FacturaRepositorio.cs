@@ -51,5 +51,21 @@ namespace Datos.Repositorios
             }
             return idFactura;
         }
+
+        public async Task<bool> Eliminar(string id)
+        {
+            bool resultado = false;
+            try
+            {
+                using MySqlConnection _conexion = Conexion();
+                await _conexion.OpenAsync();
+                string sql = @"DELETE FROM factura WHERE Id = @Codigo;";
+                resultado = Convert.ToBoolean(await _conexion.ExecuteAsync(sql, new { id }));
+            }
+            catch (Exception)
+            {
+            }
+            return resultado;
+        }
     }
 }
